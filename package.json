@@ -18,5 +18,10 @@
   "homepage": "https://github.com/vfreitas-/basic-vue-js-structure#readme",
   "dependencies": {
     "lite-server": "^2.2.2"
+  },
+  "devDependencies": {
+    "gulp-clean-css": "^2.0.11",
+    "gulp-install": "^0.6.0",
+    "gulp-sass": "^2.3.2"
   }
 }
