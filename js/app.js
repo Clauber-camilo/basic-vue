@@ -16,7 +16,7 @@ APP.bino =(function(){
 				$temp.find('.user-block__name').text(user.login); 
 				$temp.find('a').data('id', user.login); 
 				$temp.find('a').on('click', function(event) {
-					var login = $(this).parents('.user-block').data('id');
+					var login = $(this).data('id');
 					bino.get_user_info(login);
 				})  
 				$temp.appendTo('.container-user');
@@ -25,8 +25,30 @@ APP.bino =(function(){
 		},
 		get_user_info: function(login) { 
 			$.get('https://api.github.com/users/' + login, function(data){
-				console.log(data); 
+				bino.show_info(data);
+			});
+			$.get('https://api.github.com/users/' + login + '/repos', function(data){
+				bino.show_repositories(data);
 			}); 
+		},
+		show_info: function(info){
+			$('.modal-trigger').leanModal();
+			
+			$('.show-info').find('.show-info__avatar').attr('src', info.avatar_url);
+			$('.show-info').find('.show-info__name').text(info.name);
+			$('.show-info').find('.show-info__email').text(info.email);
+			$('.show-info').find('.show-info__city').text(info.location);			
+		},
+		show_repositories: function(data) { 
+			data.forEach(function(repo){
+				var $temp = $('.template-repositorios').clone();
+				$temp.removeClass('template-repositorios');
+				$temp.find('.repositorio__name').text(repo.name);
+				console.log(repo.name);
+				$temp.appendTo('.container-repo');
+				
+				//console.log(repo);
+			});	
 		}
 	};
 	return bino; 
