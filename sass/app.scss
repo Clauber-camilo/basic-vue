@@ -13,15 +13,31 @@ body {
 .title{
 	text-align: center; 
 }
-.template,
-.template-repositorios {
-		display: none !important;
+.template {
+	display: none !important;
 }
 .container-user {
 	.user-block {  
 		&__name { 
 			//color: lighten(black, 70%);
 			text-shadow: 2px 2px 3px black; 
+		}
+	}
+}
+.modal { 
+	.title{ 
+		margin: 50px 0; 
+	}
+	.container-repo { 
+		padding-left: 0 !important; 
+		padding-right: 0 !important;
+		.repositorio__name { 
+			&:hover {
+				background-color: lighten(gray,40%);
+			}
+		}
+		.active { 
+			background-color: lighten(gray,40%); 	
 		}
 	}
 }

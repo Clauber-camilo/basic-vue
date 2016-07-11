@@ -1,6 +1,8 @@
 var APP = {}; 
+APP.Services = {};
+APP.Controllers = {}; 
 
-APP.bino =(function(){
+/*APP.bino =(function(){
 	var bino = { 
 		init: function () {
 			$.get('https://api.github.com/users', function(data){
@@ -40,6 +42,7 @@ APP.bino =(function(){
 			$('.show-info').find('.show-info__city').text(info.location);			
 		},
 		show_repositories: function(data) { 
+			//$('.container-repo').html('');	
 			data.forEach(function(repo){
 				var $temp = $('.template-repositorios').clone();
 				$temp.removeClass('template-repositorios');
@@ -53,7 +56,7 @@ APP.bino =(function(){
 	};
 	return bino; 
 })(jQuery);
-APP.bino.init(); 
+APP.bino.init(); */
 
 /*bino = { 
 	init: function () {
