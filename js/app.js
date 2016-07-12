@@ -1,4 +1,5 @@
 var APP = {}; 
+APP.Sources = {};
 APP.Services = {};
 APP.Controllers = {}; 
 

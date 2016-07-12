@@ -4,9 +4,15 @@ APP.Controllers.Home = (function(){
             //getUsers() nos retorna uma instancia de jqXHR
             //ao user o método then dele, nós vamos ter disponivel os dados buscados
             //como primeiro parametro da função interna (o data)
-            APP.Services.User.getUsers().then(function(data) {
+           /* APP.Services.User.getUsers().then(function(data) {
                 home.render(data);
-            });
+            });*/
+            if (localStorage.getItem('users') == null ) {
+            	localStorage.setItem('users',JSON.stringify(APP.Sources.users));	
+            }
+            home.render(JSON.parse(localStorage.getItem('users')));	
+            //$('.modal-trigger').leanModal();
+             
 		},
 		render: function (users) {
 			users.forEach( function(user){
@@ -16,6 +22,7 @@ APP.Controllers.Home = (function(){
 				$temp.find('.user-block__name').text(user.login);
 				$temp.find('a').data('id', user.login);
 				$temp.find('a').on('click', function(event) {
+					event.preventDefault();
 					var login = $(this).data('id');
 					home.get_user_info(login);
 				})
@@ -23,17 +30,32 @@ APP.Controllers.Home = (function(){
 			});
 		},
 		get_user_info: function(login) {
+			/*if (localStorage.getItem('usersInfo') == null) {
+				APP.Services.User.getUsersInfo(login).then(function(data){
+					localStorage.setItem('userInfo', JSON.stringify(data));	
+					home.show_info(data); 
+				});	
+			}else {
+				home.show_info(JSON.parse(localStorage.getItem('usersInfo'))); 	
+			}*/
+			
+			/*if (localStorage.getItem('repositories') == null) {
+				APP.Services.Repository.getRepository(login).then(function(data){
+					localStorage.setItem('repositories', JSON.stringify(data));	
+					home.show_repositories(data); 
+				});	
+			}else {
+				home.show_repositories(JSON.parse(localStorage.getItem('repositories'))); 	
+			}*/
 			APP.Services.User.getUsersInfo(login).then(function(data){
 				home.show_info(data);	
 			});
-
 			APP.Services.Repository.getRepository(login).then(function(data){
 				home.show_repositories(data); 
 			});
 		},
 		show_info: function(info){
-			$('.modal-trigger').leanModal();
-
+			$('#modal').openModal();
 			$('.show-info').find('.show-info__avatar').attr('src', info.avatar_url);
 			$('.show-info').find('.show-info__name').text(info.name);
 			$('.show-info').find('.show-info__email').text(info.email);
