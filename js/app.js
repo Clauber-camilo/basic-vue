@@ -1,7 +1,67 @@
-var APP = {}; 
-APP.Sources = {};
-APP.Services = {};
-APP.Controllers = {}; 
+
+
+var Users = Vue.extend({
+	template: '#template-users',
+	data: function(){ 
+		var users =['']
+		return {
+			users: users, 
+			avatar: 'https://avatars.githubusercontent.com/u/1?v=3'
+		}; 
+	},
+
+	ready: function() {
+		Vue.http.get('https://api.github.com/users').then(function(data){
+				localStorage.setItem('user', JSON.stringify(data));	 
+				this.users = data.data;
+				console.log(users);
+				// data: {
+				// 	usuarios: (data); 
+				// }
+		});	
+	}
+});
+var User = Vue.extend({
+	template: '#template-user',
+	data: function(){ 
+		return {
+			message: 'Users.users', 
+			avatar: 'https://avatars.githubusercontent.com/u/1?v=3'
+		}; 
+	}
+});
+
+Vue.component('user', User)		
+Vue.component('users',Users) 
+new Vue ({
+	el: 'body'				
+});
+// Vue.component('counter', {
+// 	template: '#counter-template',
+// 	props: ['subject'],
+// 	data: function (){
+// 		return { count: 0 }; 
+// 	}
+// }); 
+// Vue.http.get('/someUrl', [options]).then(successCallback, errorCallback);
+
+// else {
+// 	home.show_info(JSON.parse(localStorage.getItem('usersInfo'))); 	
+// }
+
+// var data = {
+// 	message: 'Hello Vue.js!' ,
+// 	count: 0
+// }
+// new Vue({
+// 	el: '#user',
+// 	data: data, 
+// 	methods: { 
+// 		updateCount: function() { 
+// 			this.count += 1; 	
+// 		}
+// 	}
+// }); 
 
 /*APP.bino =(function(){
 	var bino = { 

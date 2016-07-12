@@ -22,6 +22,12 @@ body {
 			//color: lighten(black, 70%);
 			text-shadow: 2px 2px 3px black; 
 		}
+		&__avatar { 
+			background-size: cover; 
+			background-position: center; 
+			height: 100%; 
+			width: 100%; 
+		}
 	}
 }
 .modal { 
