@@ -16,34 +16,6 @@ body {
 .template {
 	display: none !important;
 }
-.container-user {
-	.user-block {  
-		&__name { 
-			//color: lighten(black, 70%);
-			text-shadow: 2px 2px 3px black; 
-		}
-		&__avatar { 
-			background-size: cover; 
-			background-position: center; 
-			height: 100%; 
-			width: 100%; 
-		}
-	}
-}
-.modal { 
-	.title{ 
-		margin: 50px 0; 
-	}
-	.container-repo { 
-		padding-left: 0 !important; 
-		padding-right: 0 !important;
-		.repositorio__name { 
-			&:hover {
-				background-color: lighten(gray,40%);
-			}
-		}
-		.active { 
-			background-color: lighten(gray,40%); 	
-		}
-	}
-}
+
+@import 'user';
+@import 'user-info'; 
