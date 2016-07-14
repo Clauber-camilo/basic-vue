@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-	<link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 	<div>
@@ -50,18 +50,18 @@
 		<!-- ========================== TEMPLATE DE 'INFORMAÇÃO DE USUARIOS' ==============================  -->
 		<!-- ========================== EXIBIDO NA ROUTE '/USER:NAME' ==============================  -->
 		<template id="template-userInfo">
-			<div class="container ">
-				<div class="row user-info">
-					<img class="user-info__avatar col s2 circle responsive-img" :src="avatar" alt=""> 
-					<div class="col s10">
+			<div class="container user-info">
+				<div class="row ">
+					<img class="user-info__avatar col s2 offset-s1 circle responsive-img" :src="avatar" alt=""> 
+					<div class="col s8">
 						<h3 class="user-info__name">{{name}}</h3>
 						<p class="user-info__email"><h5>{{email}}</h5></p>
 						<p class="user-info__city"><h5>{{city}}</h5></p>	
 					</div>
 				</div>
 				<div class="row repository">
-					<p class="repository__title"> Repositories </p>	
-					<ul class="collapsible col s10 offset-s1" data-collapsible="accordion">
+					<p class="repository__title col s12"> Repositories </p>	
+					<ul class="collapsible popout col s12" data-collapsible="accordion">
 						<repository-list> </repository-list>			
 					</ul>
 				</div>
@@ -71,16 +71,16 @@
 		<template id="template-repository-list">
 			
 			<li class="repository__list" v-for="repository in repositories">
-				<div class="repository__name collapsible-header"><p>{{repository.name}}</p></div>
-				<div class="collapsible-body">
+				<div class="repository__name collapsible-header" v-on:click="getRepoInfo(repository.name)">{{repository.name}}</div>
+				<div class="repository__body collapsible-body">
 		 			<p>
-		 				<span class="repository__fullname">TESTE</span></br> 
-			 			<span class="repository__description"></span></br>
-			 			<span class="repository__forks"></span></br>
-			 			<span class="repository__create"></span></br>
-			 			<span class="repository__default-branch"></span></br>
-			 			<span class="repository__stargazer"></span></br>
-			 			<span class="repository__watcher"></span></br>
+		 				<span class="repository__fullname"><strong>Fullname: </strong>            {{repoInfo.full_name}}          </span></br> 
+			 			<span class="repository__description"><strong>Description: </strong>      {{repoInfo.description}}        </span></br>
+			 			<span class="repository__forks"><strong>Forks: </strong>                  {{repoInfo.forks}}              </span></br>
+			 			<span class="repository__create"><strong>Create At: </strong>             {{repoInfo.created_at}}         </span></br>
+			 			<span class="repository__default-branch"><strong>Default Branch: </strong>{{repoInfo.default_branch}}     </span></br>
+			 			<span class="repository__stargazer"><strong>Stargazers: </strong>         {{repoInfo.stargazers_count}}   </span></br>
+			 			<span class="repository__watcher"><strong>Watchers: </strong>             {{repoInfo.watchers_count}}     </span></br>
 		 			</p>
 			 	</div>
 			</li>
@@ -99,6 +99,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/0.9.3/vue-resource.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.10/vue-router.js"></script>
-	<script src="/js/app.js"></script>
+	<script src="js/app.js"></script>
 </body>
 </html>

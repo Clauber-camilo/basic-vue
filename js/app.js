@@ -51,6 +51,7 @@ var UserInfo = Vue.extend({
 		}); 
 	},
 });
+
 var ReposList = Vue.extend({
 	template: "#template-repository-list", 
 	data: function(){
@@ -63,22 +64,29 @@ var ReposList = Vue.extend({
 		this.$http.get('https://api.github.com/users/' + this.$route.params.username + '/repos').then(function(data){
 			this.repositories = data.data;
 		});	
+		$('.collapsible').collapsible({
+		    accordion : true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+		});
 	},
+	methods: {
+		getRepoInfo : function (repository){
+			this.$http.get('https://api.github.com/repos/' + this.$route.params.username + '/' + repository ).then(function(data){
+				this.repoInfo = data.data;
+			});				
+		}
+	}
 })
+
 var App = Vue.extend({
 	template: '#template-conteudo'
 })
+
 Vue.component('content', App)
 Vue.component('user', User)		
 Vue.component('user-info',UserInfo)
 Vue.component('repository-list', ReposList)
 var router = new VueRouter()
 
-// Define some routes.
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// Vue.extend(), or just a component options object.
-// We'll talk about nested routes later.
 router.map({
 	'/': {
 		component: Users
