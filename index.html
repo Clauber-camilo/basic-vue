@@ -53,17 +53,38 @@
 			<div class="container ">
 				<div class="row user-info">
 					<img class="user-info__avatar col s2 circle responsive-img" :src="avatar" alt=""> 
-						<div class="col s10">
-							<h4 class="user-info__name"><h3>{{name}}</h3></h4>
-							<p class="user-info__email"><h5>{{email}}</h5></p>
-							<p class="user-info__city"><h5>{{city}}</h5></p>	
-						</div>
-				
-						<p class="title col s12"><strong>Repositorios </strong></p>
+					<div class="col s10">
+						<h3 class="user-info__name">{{name}}</h3>
+						<p class="user-info__email"><h5>{{email}}</h5></p>
+						<p class="user-info__city"><h5>{{city}}</h5></p>	
+					</div>
+				</div>
+				<div class="row repository">
+					<p class="repository__title"> Repositories </p>	
+					<ul class="collapsible col s10 offset-s1" data-collapsible="accordion">
+						<repository-list> </repository-list>			
+					</ul>
 				</div>
 			</div>
 		</template>
 		<!-- ========================== FIM DE TEMPLATE DE 'INFORMAÇÃO DE USUARIOS' ==============================  -->
+		<template id="template-repository-list">
+			
+			<li class="repository__list" v-for="repository in repositories">
+				<div class="repository__name collapsible-header"><p>{{repository.name}}</p></div>
+				<div class="collapsible-body">
+		 			<p>
+		 				<span class="repository__fullname">TESTE</span></br> 
+			 			<span class="repository__description"></span></br>
+			 			<span class="repository__forks"></span></br>
+			 			<span class="repository__create"></span></br>
+			 			<span class="repository__default-branch"></span></br>
+			 			<span class="repository__stargazer"></span></br>
+			 			<span class="repository__watcher"></span></br>
+		 			</p>
+			 	</div>
+			</li>
+		</template>
 
 	</div>
 

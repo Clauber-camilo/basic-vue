@@ -1,8 +1,18 @@
 .user-info {
 	padding-top: 50px; 
+	padding-bottom: 50px; 
 	background-color: white;
 	box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.4);
 	&__avatar {	
 	}
-		
+}
+.repository { 
+	padding-top: 25px; 
+	background-color: white;
+	box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.4);
+	&__title { 
+		font-size: 1.5rem; 
+		text-align: center; 
+
+	}
 }

@@ -37,28 +37,41 @@ var UserInfo = Vue.extend({
 			avatar: '',
 			name: '', 
 			email: '', 
-			city: '',
-			repositories: []
+			city: ''
 		}
 	},
 	ready: function () {
-		this.$http.get('https://api.github.com/users' + '/' + this.$route.params.username).then(function(data){
+		this.$http.get('https://api.github.com/users/' + this.$route.params.username).then(function(data){
 			var objData = data.data;
 			this.avatar = objData.avatar_url;
 			this.name = objData.name;
 			this.email = objData.email; 
 			this.city = objData.location; 
-			console.log(data.data);
+
 		}); 
 	},
 });
+var ReposList = Vue.extend({
+	template: "#template-repository-list", 
+	data: function(){
+		return{ 
+			repositories: [],
+			repoInfo: [],
+		}
+	},
+	ready: function() {
+		this.$http.get('https://api.github.com/users/' + this.$route.params.username + '/repos').then(function(data){
+			this.repositories = data.data;
+		});	
+	},
+})
 var App = Vue.extend({
 	template: '#template-conteudo'
 })
 Vue.component('content', App)
 Vue.component('user', User)		
 Vue.component('user-info',UserInfo)
-
+Vue.component('repository-list', ReposList)
 var router = new VueRouter()
 
 // Define some routes.
