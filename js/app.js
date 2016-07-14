@@ -19,13 +19,15 @@ var Users = Vue.extend({
 	name: 'Users',
 	data: function() {
 		return {
-			users: []
+			users: [],
+			find: false 
 		}
 	},
 	ready: function () {
 		this.$http.get('https://api.github.com/users').then(function(data){
 			//localStorage.setItem('user', JSON.stringify(data));
 			this.users = data.data;
+			this.find = true; 
 		}); 
 	}
 });
@@ -37,7 +39,8 @@ var UserInfo = Vue.extend({
 			avatar: '',
 			name: '', 
 			email: '', 
-			city: ''
+			city: '',
+			response: false
 		}
 	},
 	ready: function () {
@@ -47,6 +50,7 @@ var UserInfo = Vue.extend({
 			this.name = objData.name;
 			this.email = objData.email; 
 			this.city = objData.location; 
+			this.response = true; 
 
 		}); 
 	},
@@ -89,6 +93,7 @@ var router = new VueRouter()
 
 router.map({
 	'/': {
+		name: 'home', 
 		component: Users
 	},
     '/user/:username': {

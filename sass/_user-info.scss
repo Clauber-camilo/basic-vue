@@ -3,6 +3,10 @@
 	padding-bottom: 50px; 
 	background-color: white;
 	box-shadow: 0px 4px 16px 1px rgba(0,0,0,0.4);
+	&__loader {
+		margin: 30% auto;
+		display: block;
+	}
 	&__avatar {	
 	}
 }

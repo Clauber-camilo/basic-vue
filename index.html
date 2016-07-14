@@ -41,6 +41,24 @@
 			<h1 class="title"> Listar Usuários </h1> 	
 			<div class="container ">
 				<div class="row user">
+					<!-- LOADER -->
+					<div class="user__loader preloader-wrapper big active" v-show = "!find">
+						<div class="spinner-layer spinner-blue-only">
+							<div class="circle-clipper left">
+								<div class="circle">
+								</div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle">
+								</div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END LOADER -->
 					<!-- CHAMA O COMPONENTE USER  -->
 					<user v-for="user in users" :user="user"></user>
 				</div>
@@ -51,8 +69,24 @@
 		<!-- ========================== EXIBIDO NA ROUTE '/USER:NAME' ==============================  -->
 		<template id="template-userInfo">
 			<div class="container user-info">
+				<div class="user-info__loader preloader-wrapper big active" v-show = "!response">
+					<div class="spinner-layer spinner-green-only">
+						<div class="circle-clipper left">
+							<div class="circle">
+							</div>
+						</div>
+						<div class="gap-patch">
+							<div class="circle">
+							</div>
+						</div>
+						<div class="circle-clipper right">
+							<div class="circle">
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="row ">
-					<img class="user-info__avatar col s2 offset-s1 circle responsive-img" :src="avatar" alt=""> 
+					<img class="user-info__avatar col s2 offset-s1 circle responsive-img" :src="avatar" alt="" v-show ="response"> 
 					<div class="col s8">
 						<h3 class="user-info__name">{{name}}</h3>
 						<p class="user-info__email"><h5>{{email}}</h5></p>
@@ -65,22 +99,26 @@
 						<repository-list> </repository-list>			
 					</ul>
 				</div>
+				<div class="row">
+					<button class="btn-back btn" v-link="{name : 'home'}"> ◄ VOLTAR</button>
+				</div>
 			</div>
 		</template>
 		<!-- ========================== FIM DE TEMPLATE DE 'INFORMAÇÃO DE USUARIOS' ==============================  -->
+		<!-- ========================== TEMPLATE OF REPOSITORIES INFOS ==============================  -->
 		<template id="template-repository-list">
 			
 			<li class="repository__list" v-for="repository in repositories">
-				<div class="repository__name collapsible-header" v-on:click="getRepoInfo(repository.name)">{{repository.name}}</div>
+				<div class="repository__name collapsible-header waves-effect waves-teal" v-on:click="getRepoInfo(repository.name)">{{repository.name}}</div>
 				<div class="repository__body collapsible-body">
 		 			<p>
-		 				<span class="repository__fullname"><strong>Fullname: </strong>            {{repoInfo.full_name}}          </span></br> 
-			 			<span class="repository__description"><strong>Description: </strong>      {{repoInfo.description}}        </span></br>
-			 			<span class="repository__forks"><strong>Forks: </strong>                  {{repoInfo.forks}}              </span></br>
-			 			<span class="repository__create"><strong>Create At: </strong>             {{repoInfo.created_at}}         </span></br>
-			 			<span class="repository__default-branch"><strong>Default Branch: </strong>{{repoInfo.default_branch}}     </span></br>
-			 			<span class="repository__stargazer"><strong>Stargazers: </strong>         {{repoInfo.stargazers_count}}   </span></br>
-			 			<span class="repository__watcher"><strong>Watchers: </strong>             {{repoInfo.watchers_count}}     </span></br>
+		 				<span class="repository__fullname"><strong>Fullname: </strong>             {{repoInfo.full_name}}          </span></br> 
+			 			<span class="repository__description"><strong>Description: </strong>       {{repoInfo.description}}        </span></br>
+			 			<span class="repository__forks"><strong>Forks: </strong>                   {{repoInfo.forks}}              </span></br>
+			 			<span class="repository__create"><strong>Create At: </strong>              {{repoInfo.created_at}}         </span></br>
+			 			<span class="repository__default-branch"><strong>Default Branch: </strong> {{repoInfo.default_branch}}     </span></br>
+			 			<span class="repository__stargazer"><strong>Stargazers: </strong>          {{repoInfo.stargazers_count}}   </span></br>
+			 			<span class="repository__watcher"><strong>Watchers: </strong>              {{repoInfo.watchers_count}}     </span></br>
 		 			</p>
 			 	</div>
 			</li>
